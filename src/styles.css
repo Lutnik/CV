@@ -1,0 +1,16 @@
+h1,
+h2,
+h3,
+a {
+  font-family: "Lora";
+}
+div {
+  font-family: "Alegreya";
+}
+.meta {
+  font-weight: bold;
+}
+
+.ui.text.container {
+  max-width: 900px !important;
+}
