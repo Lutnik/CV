@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import LangContext from "./LangContext";
 import PropTypes from "prop-types";
 import { Grid, Image, Segment, Table } from "semantic-ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,6 +15,8 @@ import git from "./logo/github.png";
 import cp from "./logo/codepen.png";
 
 export default function Intro({ data }) {
+  const language = useContext(LangContext);
+
   return (
     <Segment
       style={{
@@ -22,28 +25,24 @@ export default function Intro({ data }) {
       }}
       stackable="true"
     >
-      <Grid columns={2}>
+      <Grid columns={2} stackable>
         <Grid.Row verticalAlign="middle">
-          <Grid.Column
-            style={{
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-around"
-            }}
-          >
+          <Grid.Column>
             <Grid.Row>
               <h1>
                 {data.firstName.toUpperCase()} {data.lastName.toUpperCase()}
+                <br />
+                <br />
               </h1>
             </Grid.Row>
             <Grid.Row>
               <h3>
-                Cel zawodowy: <br /> {data.careerGoal}{" "}
+                {language === "PL" ? `Cel zawodowy:` : "Career goal:"} <br />
+                {data.careerGoal}
               </h3>
             </Grid.Row>
           </Grid.Column>
-          <Grid.Column>
+          <Grid.Column style={{ padding: 0 }}>
             <Grid.Row>
               <Table
                 basic="very"
@@ -71,7 +70,9 @@ export default function Intro({ data }) {
                     <Table.Cell textAlign="center">
                       <FontAwesomeIcon icon={faEnvelope} />
                     </Table.Cell>
-                    <Table.Cell>{data.email}</Table.Cell>
+                    <Table.Cell style={{ wordWrap: "anywhere" }}>
+                      {data.email}
+                    </Table.Cell>
                   </Table.Row>
                 </Table.Body>
               </Table>

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import LangContext from "./LangContext";
 import PropTypes from "prop-types";
 import Skill from "./Skill";
 import { Segment } from "semantic-ui-react";
 import { segmentStyle } from "./styles.js";
 
 export default function Skillset({ skills }) {
+  const language = useContext(LangContext);
+
   function getCategories(s) {
     return Array.from(new Set(s.map(skill => skill.category)));
   }
@@ -28,7 +31,7 @@ export default function Skillset({ skills }) {
 
   return (
     <>
-      <h2> Umiejętności: </h2>
+      <h2> {language === "PL" ? "Umiejętności:" : "Skills:"} </h2>
       {getCategories(skills).map((category, catIndex) => (
         <Segment style={segmentStyle} key={category}>
           {skills

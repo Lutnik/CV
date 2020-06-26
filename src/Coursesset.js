@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import LangContext from "./LangContext";
 import PropTypes from "prop-types";
 import { Accordion, Segment } from "semantic-ui-react";
 import { segmentStyle, linkStyle } from "./styles.js";
 
 export default function Coursesset({ courses }) {
+  const language = useContext(LangContext);
   const panels = courses.map(course => ({
     key: course.name,
     title: course.name,
@@ -27,7 +29,7 @@ export default function Coursesset({ courses }) {
 
   return (
     <>
-      <h2> Kursy: </h2>
+      <h2> {language === "PL" ? "Kursy:" : "Courses:"} </h2>
       <Segment style={segmentStyle}>
         <Accordion styled panels={panels} />
       </Segment>

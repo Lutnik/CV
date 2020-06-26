@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import LangContext from "./LangContext";
 import PropTypes from "prop-types";
 import Item from "./Item";
 
 export default function Historyset({ items }) {
+  const language = useContext(LangContext);
+
   return (
     <>
-      <h2> Praca / wykształcenie: </h2>
+      <h2>
+        {language === "PL"
+          ? "Praca / wykształcenie:"
+          : "Employment / education history:"}
+      </h2>
       {items
         .sort((item1, item2) => item1.startDate < item2.startDate)
         .map(item => (

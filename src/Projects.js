@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import LangContext from "./LangContext";
 import PropTypes from "prop-types";
 import { Segment, Table } from "semantic-ui-react";
 import { segmentStyle, linkStyle } from "./styles";
 
 export default function Projects({ showcase }) {
+  const language = useContext(LangContext);
+
   return (
     <>
-      <h2> Projekty: </h2>
+      <h2> {language === "PL" ? "Projekty:" : "Projects:"} </h2>
       <Segment style={segmentStyle}>
         <Table basic="very" unstackable compact>
           <Table.Body>
